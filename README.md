@@ -31,3 +31,47 @@ function mystery(n) {
 Add your answer to this markdown file. [This
 page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 might help with the notation for mathematical expressions.
+
+
+## Analysis of the $mystery$ Function's Runtime
+
+The runtime analysis of a recursive function, named $mystery$, to determine its computational complexity as a function of $n$. 
+
+### Function Overview
+
+The $mystery$ function is defined as follows:
+
+- It returns immediately if $n <= 1$.
+- It makes three recursive calls to itself with $n/3$ as the new argument.
+- It executes a triple-nested loop that iterates $n * n$ times in the outer loop, $n$ times in the middle loop, and $n * n$ times in the innermost loop, leading to a total of $n^5$ operations.
+
+### Recurrence Relation Derivation
+
+Based on the function's structure, we establish the following recurrence relation for its runtime $T(n)$:
+
+$T(n) = 3T(n/3) + n^5$
+
+### Manual Expansion and Analysis
+
+1. **Initial Expansion:**
+   - At the first level for $n > 1$, the function's runtime is: $T(n) = 3T(n/3) + n^5$.
+
+2. **Further Expansion:**
+   - Expanding the recursive calls further, we observe the pattern: $T(n) = 9T(n/3^2) + 3(n/3)^5 + n^5$.
+
+3. **Generalization to i-th Level:**
+   - Continuing this pattern up to the $i-th$ level, where $i$ is determined by when $n$ has been reduced to $1$ or less, we arrive at: $T(n) = 3^iT(n/3^i) + n^5 * Σ(1/3^(5k))$ from $k=0$ to $i-1$.
+
+### Solving the Recurrence
+
+- The recursion concludes when $n/3^i ≤ 1$, implying $i = log_3(n)$.
+- The series $Σ(1/3^(5k))$ from $k=0$ to $i-1$ converges to a constant factor, indicating that the loops' contribution of $n^5$ dominates the runtime.
+
+### Big O Bound Conclusion
+
+Given the dominance of the $n^5$ term from the triple-nested loops over the recursive structure, we conclude the Big O bound on the runtime of the $mystery$ function is:
+
+$T(n) = O(n^5)$
+
+This analysis demonstrates that despite the recursive calls, the primary factor contributing to the runtime complexity is the $n^5$ operations from the nested loops.
+
