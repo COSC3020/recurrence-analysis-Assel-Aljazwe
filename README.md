@@ -69,9 +69,7 @@ $T(n) = 3T(n/3) + n^5$
 
 ### Big O Bound Conclusion
 
-Given the dominance of the $n^5$ term from the triple-nested loops over the recursive structure, we conclude the Big O bound on the runtime of the $mystery$ function is:
+Given the significant impact of the triple-nested loops compared to the recursive calls in the mystery function, we determine its Big O runtime complexity to be
+$O(n^5)$ Highlighting that the function's execution time scales with the fifth power of the input size n, primarily due to these loops.
 
-$T(n) = O(n^5)$
-
-This analysis demonstrates that despite the recursive calls, the primary factor contributing to the runtime complexity is the $n^5$ operations from the nested loops.
 
