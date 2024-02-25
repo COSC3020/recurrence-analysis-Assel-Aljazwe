@@ -60,16 +60,41 @@ $T(n) = 3T(n/3) + n^5$
    - Expanding the recursive calls further, we observe the pattern: $T(n) = 9T(n/3^2) + 3(n/3)^5 + n^5$.
 
 3. **Generalization to i-th Level:**
-   - Continuing this pattern up to the $i-th$ level, where $i$ is determined by when $n$ has been reduced to $1$ or less, we arrive at: $T(n) = 3^iT(n/3^i) + n^5 * Σ(1/3^(5k))$ from $k=0$ to $i-1$.
+   - Continuing this pattern up to the $i-th$ level, where $i$ is determined by when $n$ has been reduced to $1$ or less, we arrive at: $T(n) = 3^iT(n/3^i)$ + $n^5$ * $Σ(1/3$<sup>$(5k)$</sup>) from $k=0$ to $i-1$.
 
 ### Solving the Recurrence
 
-- The recursion concludes when $n/3^i ≤ 1$, implying $i = log_3(n)$.
-- The series $Σ(1/3^(5k))$ from $k=0$ to $i-1$ converges to a constant factor, indicating that the loops' contribution of $n^5$ dominates the runtime.
+**Recursion Depth**
+
+- The recursion concludes at depth $i$ when $n/3^i ≤ 1$, which leads to $i = log_3(n)$.
+
+**Loop Work Contribution**
+
+- The main work is done by the triple nested-loops that run $n^5$ times at every step of the recursion.
+
+**Total Work Calculation**
+
+- Given the recurrence relation: $T(n) = 3T(n/3) + n^5$
+
+- This shows that the total work includes recursive contributions and the dominant $n^5$ term from the loops.
+
+### Determining the Dominant Term
+
+**Analyzing Contributions**
+
+- The $n^5$ term, arising from the loops, significantly exceeds the work contributed by the recursive calls.
+
+**Series and Constant Factor**
+
+- The convergence of the series $Σ(1/3$<sup>$(5k)$</sup>) from $k=0$ to $i-1$ to a constant factor further proves and emphasizes the dominance of the $n^5$ operations in determining runtime.
 
 ### Big O Bound Conclusion
 
-Given the significant impact of the triple-nested loops compared to the recursive calls in the mystery function, we determine its Big O runtime complexity to be
-$O(n^5)$ Highlighting that the function's execution time scales with the fifth power of the input size n, primarily due to these loops.
+- Considering the function's structure and the processing demands of the triple-nested loops, we find the runtime complexity to be $O(n^5)$
+  
+**Conclusion**:
+- The $mystery$ function's execution time scales with the fifth power of the input size $n$, primarily due to the extensive work performed by the loops, leading to a complexity of $O(n^5)$.
+
+
 
 
